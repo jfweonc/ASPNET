@@ -15,6 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 var connection = builder.Configuration.GetConnectionString("bestbuy");
 //var test = "Server=localhost;Database=bestbuy;uid=root;Pwd=password;Port=3306;"; 
 builder.Services.AddScoped<IDbConnection>((s) =>
@@ -22,7 +23,6 @@ builder.Services.AddScoped<IDbConnection>((s) =>
     IDbConnection conn = new MySqlConnection(connection);
     conn.Open();
     return conn;
-
 });
 
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
